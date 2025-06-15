@@ -1,0 +1,164 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 15% 15%;
+    --card: 220 20% 100%;
+    --card-foreground: 220 15% 15%;
+    --popover: 220 20% 100%;
+    --popover-foreground: 220 15% 15%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 20% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 15% 25%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 15% 25%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem; /* Increased radius for softer corners */
+  }
+
+  .dark {
+    --background: 220 15% 5%; /* Darker background */
+    --foreground: 220 20% 95%;
+    --card: 220 15% 10%;
+    --card-foreground: 220 20% 95%;
+    --popover: 220 15% 10%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 217 91% 65%; /* Slightly brighter primary for dark mode */
+    --primary-foreground: 220 15% 8%;
+    --secondary: 220 15% 12%; /* Darker secondary */
+    --secondary-foreground: 220 20% 85%;
+    --muted: 220 15% 12%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 220 15% 12%;
+    --accent-foreground: 220 20% 85%;
+    --destructive: 0 62% 55%; /* Slightly brighter destructive */
+    --destructive-foreground: 220 20% 95%;
+    --border: 220 15% 18%; /* Darker border */
+    --input: 220 15% 18%;
+    --ring: 217 91% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased; /* Added antialiased */
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.9) 0%, hsl(var(--primary) / 0.7) 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-effect {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: hsl(var(--background) / 0.75);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.dark .glass-effect {
+  background-color: hsl(var(--background) / 0.6);
+  border: 1px solid hsl(var(--border) / 0.3);
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(2deg);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-subtle 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.section-title-underline {
+  @apply w-24 h-1 mx-auto rounded-full;
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.5) 100%);
+}
+
+.card-hover-effect {
+  @apply transition-all duration-300 ease-out;
+}
+.card-hover-effect:hover {
+  @apply shadow-2xl scale-[1.03] border-primary/50;
+}
+
+.button-glow-effect {
+  @apply relative overflow-hidden;
+}
+
+.button-glow-effect::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.button-glow-effect:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.button-glow-effect > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Parallax background for sections */
+.parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-parallax {
+  background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2020&q=80');
+}
+.dark .hero-parallax {
+   background-image: url('https://images.unsplash.com/photo-1480506132288-68f7705954bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2020&q=80');
+}
